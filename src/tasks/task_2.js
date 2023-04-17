@@ -1,9 +1,17 @@
 export default function destructure(obj) {
     const { special } = obj;
-    for (const i in special) {
-        if (!special[i].hasOwnProperty('description')) {
-            special[i].description = 'Описание недоступно';
-        }
-    }
-    return special;
+    const newList = [];
+    special.map((element) => {
+        const {
+            id, name, icon, description = 'Описание недоступно',
+        } = element;
+        newList.push({
+            id,
+            name,
+            icon,
+            description,
+        });
+        return newList;
+    });
+    return newList;
 }
